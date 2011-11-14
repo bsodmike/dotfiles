@@ -42,10 +42,12 @@ Add the following to `~/.vimrc`
     filetype plugin indent on
 
 ## [Snipmate](https://github.com/garbas/vim-snipmate)
+
 Instructions: [https://github.com/garbas/vim-snipmate](https://github.com/garbas/vim-snipmate)
+
 snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features in Vim.
 
-Using Pathogen
+Pathogen makes it easy to install:
 
     % cd ~/.vim
     % mkdir bundle
@@ -57,3 +59,11 @@ Using Pathogen
     % git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
     % git clone https://github.com/honza/snipmate-snippets.git
 
+## Exuberant ctags on MacOS X 10.6
+
+Follow [these
+instructions](http://blog.milkfarmproductions.com/post/4781988987/install-ctags-on-macos-x-10-6) to install the latest verson of ctags (found
+[here](http://ctags.sourceforge.net/))
+
+Simply run `ctags -R` within your project directory to generate a 'tags'
+file; you may or may not want to add this to your `.gitignore` file.
