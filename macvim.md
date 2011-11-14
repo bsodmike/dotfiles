@@ -1,4 +1,4 @@
-# Commands
+# Vim Commands
 
 `^Wt^WK` To change two vertically split windows to horizonally split
 `^Wt^WH` Horizontally to vertically
@@ -9,8 +9,17 @@ where `^W` means "hit Ctrl-W". Explanations:
     ^WK     moves the current window to full-width at the very top
     ^WH     moves the current window to full-height at far left
 
-
 # Config
+
+Add to `~/.vimrc`:
+
+    " auto remove whitespace on buffer save
+    autocmd! BufWrite * mark ' | silent! %s/\s\+$// | norm ''
+
+...and increase the font size
+
+    " custom
+    set guifont=Monaco:h16
 
 ## Pathogen
 
@@ -22,9 +31,8 @@ Add the following to `~/.vimrc`
     filetype plugin indent on
 
 ## [Snipmate](https://github.com/garbas/vim-snipmate)
-
+Instructions: [https://github.com/garbas/vim-snipmate](https://github.com/garbas/vim-snipmate)
 snipMate.vim aims to be a concise vim script that implements some of TextMate's snippets features in Vim.
-[https://github.com/garbas/vim-snipmate](https://github.com/garbas/vim-snipmate)
 
 Using Pathogen
 
