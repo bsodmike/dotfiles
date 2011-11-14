@@ -1,6 +1,17 @@
 # Vim Commands
 
+## Basic Mappings
+
+The leader is mapped to `\`
+
+`\n` NERDTree
+
+`command-t` Command-T a la TextMate
+
+`command-e` ConqueTerm
+
 `^Wt^WK` To change two vertically split windows to horizonally split
+
 `^Wt^WH` Horizontally to vertically
 
 where `^W` means "hit Ctrl-W". Explanations:
