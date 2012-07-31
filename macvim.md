@@ -66,4 +66,6 @@ instructions](http://blog.milkfarmproductions.com/post/4781988987/install-ctags-
 [here](http://ctags.sourceforge.net/))
 
 Simply run `ctags -R` within your project directory to generate a 'tags'
-file; you may or may not want to add this to your `.gitignore` file.
+file; you may or may not want to add this to `.gitignore`.
+
+
