@@ -1,0 +1,6 @@
+" }}}
+" Color scheme {{{
+
+syntax on
+set background=dark
+colorscheme molokai
