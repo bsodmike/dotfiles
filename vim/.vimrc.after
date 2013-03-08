@@ -1,6 +1,13 @@
-" }}}
-" Color scheme {{{
-
+" Color scheme ---------------------- {{{
 syntax on
 set background=dark
 colorscheme argokai
+" }}}
+
+" Text wrap for long lines
+set wrap
+set textwidth=80
+set colorcolumn=80
+set formatoptions=qrn1
+
+

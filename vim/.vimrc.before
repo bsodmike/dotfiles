@@ -1,26 +1,19 @@
 filetype off
 filetype plugin indent on
 
+" Basic Settings ----------------------- {{{
+set autoindent
 set nocompatible
 set modelines=0
 set guifont=Monaco:h18
-
-" }}}
-" Tabs, spaces, wrapping {{{
-
+" Tab settings
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-set wrap
-set textwidth=80
-set formatoptions=qrn1
-set colorcolumn=+1
-
-
 set encoding=utf-8
 set scrolloff=3
-set autoindent
+set termencoding=utf-8
 set showmode
 set showcmd
 set hidden
@@ -28,29 +21,58 @@ set wildmenu
 set wildmode=list:longest
 set visualbell
 set cursorline
+"set cursorcolumn
 set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set relativenumber
 set undofile
-let mapleader = ","
-
-nnoremap / /\v
-vnoremap / /\v
+" Ignorecase and smartcase together make Vim deal with
+" case-sensitive search intelligently. If you search for an
+" all-lowercase string your search will be case-insensitive,
+" but if one or more characters is uppercase the search will be
+" case-sensitive. Most of the time this does what you want.
 set ignorecase
 set smartcase
-set gdefault
+" Note that gdefault applies substitutions globally on lines. For example,
+" instead of :%s/foo/bar/g you just type :%s/foo/bar/. This is
+" almost always what you want (when was the last time you wanted
+" to only replace the first occurrence of a word on a line?) and
+" if you need the previous behavior you just tack on the g again.
+"set gdefault
+" Incsearch, showmatch and hlsearch work together to highlight
+" search results (as you type). It's really quite handy, as long
+" as you have the next line as well.
 set incsearch
 set showmatch
 set hlsearch
+" Show invisible chars
+" This makes Vim show invisible characters with the same
+" characters that TextMate uses. You might need to adjust your
+" color scheme so they're not too distracting.
+set list
+set listchars=tab:▸\ ,eol:¬,extends:›,precedes:‹,nbsp:·,trail:·
+" }}}
+
+" Custom Mappings ---------------------- {{{
+" Change the leader key : namespace of customization
+let mapleader = ","
+" For search
+" The first two lines fix Vim's horribly broken default regex
+" handling by automatically inserting a \v before any string
+" you search for. This turns off Vim's crazy default regex
+" characters and makes searches use normal regexes. I already
+" know Perl/Python compatible regex formatting, why would I
+" want to learn another scheme?
+nnoremap / /\v
+vnoremap / /\v
+
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
-set list
-set listchars=tab:▸\ ,eol:¬
-
+nnoremap ; :
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -65,21 +87,36 @@ nnoremap k gk
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-
-nnoremap ; :
+" }}}
 
 au FocusLost * silent! :wa
 
-" auto remove whitespace on buffer save
+" Auto remove whitespace on buffer save
 autocmd! BufWrite * mark ' | silent! %s/\s\+$// | norm ''
 
+" Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Search with Ack
 nnoremap <leader>a :Ack
+
+" Fold HTML tags
 nnoremap <leader>ft Vatzf
+
+" Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>q gqip
+
+" Reselect text i just pasted
 nnoremap <leader>v V`]
+
+" This last mapping lets me quickly open up my ~/.vimrc file
+" in a vertically split window so I can add new things to it
+" on the fly.
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+
+" Add quotes around current word
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 
 inoremap jj <ESC>
 
@@ -89,6 +126,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" }}}
-" ZoomWin configuration {{{
+" ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
+
+" NERDTree configuration
+let NERDChristmasTree=1
+let NERDTreeShowHidden=1
+
+" For vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1

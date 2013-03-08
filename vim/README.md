@@ -1,14 +1,22 @@
 # Vim Commands
 
+## Using Vim Help
+
+`:help` to access help
+
+`Type CTRL-T or CTRL-O (repeat to go further back)` To navigate through help
+
 ## Basic Mappings
 
-The leader is mapped to `\`
+The leader is mapped to `,`
 
-`\n` NERDTree
+`,n` NERDTree
 
-`command-t` Command-T a la TextMate
+`:Vex` an alternative to NERDTree, within a `:vsplit`
 
-`command-e` ConqueTerm
+`(C-p)` Command-P
+
+`(C-v)` Create a vertical split, same as `:vs` or `:vsplit`
 
 `^Wt^WK` To change two vertically split windows to horizonally split
 
@@ -24,7 +32,7 @@ where `^W` means "hit Ctrl-W". Explanations:
 
 Add to `~/.vimrc`:
 
-    " auto remove whitespace on buffer save
+    " Auto remove whitespace on buffer save
     autocmd! BufWrite * mark ' | silent! %s/\s\+$// | norm ''
 
 ...and increase the font size
