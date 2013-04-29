@@ -1,0 +1,35 @@
+[user]
+	name = Michael de Silva
+	email = michael@mwdesilva.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
+	pager = true
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[alias]
+  c  = commit -m
+	ci = commit
+	fo = !git fetch origin && git status -sb
+	br = branch
+	ba = branch -a
+	st = status -sb
+	co = checkout
+  cob = checkout -b
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lp = log -p
+  today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+  up = !git fetch origin && git rebase @{u} # git pull --rebase
+  pa = !git push all && git fetch origin && git fetch bitbucket && git status -sb
+[core]
+	editor = mvim -f
+	excludesfile = /Users/michaeldesilva/.gitignore_global
+[github]
+	user = bsodmike
+
+
