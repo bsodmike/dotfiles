@@ -98,7 +98,7 @@ autocmd! BufWrite * mark ' | silent! %s/\s\+$// | norm ''
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Search with Ack
-nnoremap <leader>a :Ack
+nnoremap <leader>a :Ag
 
 " Fold HTML tags
 nnoremap <leader>ft Vatzf
