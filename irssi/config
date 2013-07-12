@@ -1,0 +1,198 @@
+# vim:ft=config
+
+servers = (
+  {
+    # connect to my znc
+    address = "mwdesilva.com";
+    chatnet = "mwdesilva";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+    password = "ZNC_USER:ZNC_PASS";
+  },
+  {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    #use_ssl = "yes";
+    #ssl_verify = "yes";
+    #ssl_capath = "/etc/ssl/certs/";
+    autoconnect = "no";
+  },
+  { address = "localhost"; chatnet = "bitlbee"; autoconnect = "no"; }
+);
+
+chatnets = {
+  freenode = { type = "IRC"; nick = "michael_mbp"; };
+  bitlbee = { type = "IRC"; };
+  mwdesilva = { type = "IRC"; };
+};
+
+channels = (
+  { name = "#rubyonrails"; chatnet = "freenode"; autojoin = "yes"; }
+);
+
+aliases = {
+  J = "join";
+  LEAVE = "part";
+  E = "exec - runz";
+  EO = "exec - -o runz";
+  EXIT = "quit";
+  LL = "lastlog";
+  W = "window";
+  M = "mark";
+  WC = "window close";
+  WK = "window kill";
+  WN = "window new hide";
+  WA = "window goto active";
+  RUN = "SCRIPT LOAD";
+  Q = "QUERY";
+};
+
+statusbar = {
+  items = {
+    time = "{sb $Z}       ";
+    window = ":: {sb [$winref] $tag $itemname} ";
+    window_empty = ":: {sb [$winref] $tag $itemname} ";
+
+    prompt = "{prompt}";
+    prompt_empty = "{prompt}";
+  };
+
+  default = {
+    window = {
+      type = "window";
+      placement = "top";
+      visible = "active";
+      items = {
+        window = { };
+        window_empty = { };
+        typing_notice = { };
+        usercount = { };
+      };
+    };
+
+    window_inact = {
+      type = "window";
+      placement = "top";
+      visible = "inactive";
+      items = { window = { }; window_empty = { }; };
+    };
+
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      position = "100";
+      visible = "always";
+
+      items = {
+        time = { };
+        user = { };
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+
+        input = { priority = "10"; };
+      };
+    };
+
+    topic = {
+      type = "root";
+      placement = "bottom";
+      position = "1";
+      visible = "always";
+      items = { topic = { }; topic_empty = { }; };
+    };
+
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+
+settings = {
+  core = {
+    real_name = "Patrick Bateman";
+    user_name = "patrick";
+    nick = "michael_mbp";
+    awaylog_file = "/dev/null";
+    recode_autodetect_utf8 = "yes";
+    recode_fallback = "CP1252";
+  };
+
+  "fe-text" = { actlist_sort = "refnum"; };
+
+  "fe-common/core" = {
+    emphasis = "OFF";
+    theme = "pbrisbin";
+    beep_msg_level = "NOTICE MSGS HILIGHT";
+    bell_beeps = "no";
+    hilight_nick_matches = "no";
+    autolog_path = "~/.irssi/logs/$tag/$0.log";
+    autolog = "yes";
+  };
+
+  "perl/core/scripts" = {
+    neat_maxlength = "15";
+    awl_display_key = "%w$N.$H$C$S ";
+    awl_position = "0";
+    awl_sbar_maxlength = "no";
+    awl_maxlines = "3";
+    screen_away_message = "away";
+    hilightwin_showprivmsg = "no";
+    bitlbee_send_typing = "yes";
+    lt_in_queries = "yes";
+    neat_left_actions = "no";
+  };
+};
+
+ignores = (
+  { level = "JOINS PARTS QUITS NICKS"; },
+  { level = "MODES"; channels = ( "&bitlbee" ); }
+);
+
+hilights = (
+  { text = "michael_mbp"; nick = "yes"; word = "yes"; fullword = "yes"; },
+  { text = "mdesilva.com"; nick = "no"; word = "yes"; fullword = "no"; }
+);
+
+logs = { };
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = { name = "hilight"; sticky = "yes"; };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "&bitlbee";
+        tag = "bitlbee";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#twitter_bsodmike";
+        tag = "bitlbee";
+      }
+    );
+  };
+};
+mainwindows = {
+  1 = { first_line = "11"; lines = "44"; };
+  2 = { first_line = "1"; lines = "10"; };
+};
