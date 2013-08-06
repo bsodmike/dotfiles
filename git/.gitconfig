@@ -15,7 +15,7 @@
 [alias]
   c  = commit -m
 	ci = commit
-  fa = !git fetch origin && git fetch bitbucket && git status -sb
+	fa = !git fetch origin && git fetch bitbucket && git status -sb
 	fo = !git fetch origin && git status -sb
 	br = branch
 	ba = branch -a
@@ -24,6 +24,7 @@
   cob = checkout -b
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	lp = log -p
+  wip = !git fa && git lg --stat @{u}..
   today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
   up = !git fetch origin && git rebase @{u} # git pull --rebase
   pa = !git push all && git fetch origin && git fetch bitbucket && git status -sb
@@ -32,5 +33,3 @@
 	excludesfile = /Users/michaeldesilva/.gitignore_global
 [github]
 	user = bsodmike
-
-
