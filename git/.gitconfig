@@ -1,35 +1,36 @@
 [user]
-	name = Michael de Silva
-	email = michael@mwdesilva.com
+  name = Michael de Silva
+  email = michael@mwdesilva.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	ui = auto
-	pager = true
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = auto
+  pager = true
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 [alias]
   c  = commit -m
-	ci = commit
-	fa = !git fetch origin && git fetch bitbucket && git status -sb
-	fo = !git fetch origin && git status -sb
-	br = branch
-	ba = branch -a
-	st = status -sb
-	co = checkout
+  ci = commit
+  ;fa = !git fetch origin && git fetch bitbucket && git status -sb
+  fa = !git remote -v update && git status -sb
+  fo = !git fetch origin && git status -sb
+  br = branch
+  ba = branch -a
+  st = status -sb
+  co = checkout
   cob = checkout -b
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-	lp = log -p
-  wip = !git fa && git lg --stat @{u}..
+  lp = log -p
+  wip = !git fo && git lg --stat @{u}..
   today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
   up = !git fetch origin && git rebase @{u} # git pull --rebase
   pa = !git push all && git fetch origin && git fetch bitbucket && git status -sb
 [core]
-	editor = mvim -f
-	excludesfile = /Users/michaeldesilva/.gitignore_global
+  editor = mvim -f
+  excludesfile = /Users/michaeldesilva/.gitignore_global
 [github]
-	user = bsodmike
+  user = bsodmike
