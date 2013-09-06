@@ -1,7 +1,10 @@
 " Color scheme ---------------------- {{{
 syntax on
 set background=dark
-colorscheme argokai
+"colorscheme argokai
+"colorscheme kolor
+colorscheme gruvbox
+"colorscheme badwolf
 " }}}
 
 " Text wrap for long lines
@@ -10,4 +13,6 @@ set textwidth=80
 set colorcolumn=80
 set formatoptions=qrn1
 
-
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
