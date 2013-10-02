@@ -13,6 +13,8 @@
   local = yellow
   remote = green
 [alias]
+  d  = diff
+  dc = diff --cached
   c  = commit -m
   ci = commit
   ;fa = !git fetch origin && git fetch bitbucket && git status -sb
