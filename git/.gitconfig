@@ -20,6 +20,7 @@
   ;fa = !git fetch origin && git fetch bitbucket && git status -sb
   fa = !git remote -v update && git status -sb
   fo = !git fetch origin && git status -sb
+  fl = !git fo && git lg --stat ..@{u}
   b = branch
   br = branch
   ba = branch -a
