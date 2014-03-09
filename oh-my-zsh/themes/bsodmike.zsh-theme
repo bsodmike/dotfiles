@@ -2,7 +2,7 @@
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
-local time_stamp='%{$fg[blue]%}%D{[%I:%M:%S]} %{$reset_color%}%'
+local time_stamp='%{$fg[blue]%}%D{[%H:%M:%S]} %{$reset_color%}%'
 local current_dir='%{$terminfo[bold]$fg[blue]%} %~%{$reset_color%}'
 local rvm_ruby='%{$fg[green]%}{$(rvm-prompt i v g)}%{$reset_color%}'
 local git_branch='$(git_prompt_info)%{$reset_color%}'
