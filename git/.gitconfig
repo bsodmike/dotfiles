@@ -28,6 +28,7 @@
   co = checkout
   cob = checkout -b
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --oneline --shortstat
   lp = log -p
   wip = !git fo && git lg --stat @{u}..
   today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
