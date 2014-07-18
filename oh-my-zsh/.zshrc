@@ -50,3 +50,16 @@ function crc32 { cksum -o3 "$@"|ruby -e 'STDIN.each{|a|a=a.split;printf "%08X\t%
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+
+#{{{ Shell Conveniences
+
+alias vim_conflict="mvim \`git status|grep 'both modified'|cut -d: -f2\`"
+
+# WS
+server() { ag $1 /Users/mdesilva/whitespace/whitespace-chef-repo/nodes/* | sed 's/.*\/\(vhost[^.]*\).*app-\([^]]*\)]"[,]*/\2:\1/' }
+kick() { ssh vhost$1 -l root -t 'killall -USR1 chef-client && tail -f -n1000 /var/log/chef/client.log' }
+
+#}}}
+
+
