@@ -34,6 +34,7 @@
   today = log --shortstat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
   up = !git fetch origin && git rebase @{u} # git pull --rebase
   pa = !git push all && git fetch origin && git fetch bitbucket && git status -sb
+  pr = !git fetch origin && git pull --rebase
 [core]
   editor = mvim -f
   excludesfile = /Users/michaeldesilva/.gitignore_global
