@@ -35,6 +35,7 @@
   up = !git fetch origin && git rebase @{u} # git pull --rebase
   pa = !git push all && git fetch origin && git fetch bitbucket && git status -sb
   pr = !git fetch origin && git pull --rebase
+  undo = reset --soft- 'HEAD^'
 [core]
   editor = mvim -f
   excludesfile = /Users/michaeldesilva/.gitignore_global
