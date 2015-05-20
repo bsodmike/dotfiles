@@ -44,20 +44,23 @@ function crc32 { cksum -o3 "$@"|ruby -e 'STDIN.each{|a|a=a.split;printf "%08X\t%
 
 # slows down terminal spawning
 # for python virtualenv
-#export WORKON_HOME=$HOME/.virtualenvs
-#source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
+# disable for rbenv
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+eval "$(rbenv init -)"
 
 #{{{ Shell Conveniences
 
+alias rbenv_upgrade="brew update && brew upgrade rbenv ruby-build"
 alias vim_conflict="mvim \`git status|grep 'both modified'|cut -d: -f2\`"
+git_co() { git checkout $(git branch | cut -c 3- | pick) }
+git_stash_apply() { git stash apply $(git stash list | pick | awk 'NR==1{printf $1}' | cut -d : -f 1,3) }
 
 # WS
-server() { ag $1 /Users/mdesilva/whitespace/whitespace-chef-repo/nodes/* | sed 's/.*\/\(vhost[^.]*\).*app-\([^]]*\)]"[,]*/\2:\1/' }
+server() { ag $1 /Volumes/inertialbox/clients/whitespace/whitespace-chef-repo/nodes/* | sed 's/.*\/\(vhost[^.]*\).*app-\([^]]*\)]"[,]*/\2:\1/' }
 kick() { ssh vhost$1 -l root -t 'killall -USR1 chef-client && tail -f -n1000 /var/log/chef/client.log' }
 
 #}}}
