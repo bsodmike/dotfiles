@@ -122,15 +122,7 @@
 				"before": ":",
 				"width": 3,
 				"align": "l"
-			},
-      {
-        "function": "powerline.segments.common.wthr.weather",
-        "priority": 50,
-        "args": {
-          "unit": "C"
-        },
-				"align": "l"
-      }
-    ]
+			}
+		]
 	}
 }
