@@ -7,7 +7,8 @@ filetype plugin indent on
 set autoindent
 set nocompatible
 set modelines=0
-set guifont=Inconsolata:h18
+"set guifont=Inconsolata:h22
+set guifont=Hack:h20
 " Tab settings
 set tabstop=2
 set shiftwidth=2
@@ -137,3 +138,10 @@ let NERDTreeShowHidden=1
 
 " For vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
+
+" Easier split navigations
+set splitbelow
+set splitright
+
+" Recognise ES6 file extension as JavaScript
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
