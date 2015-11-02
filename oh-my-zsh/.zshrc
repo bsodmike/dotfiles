@@ -60,7 +60,7 @@ git_co() { git checkout $(git branch | cut -c 3- | pick) }
 git_stash_apply() { git stash apply $(git stash list | pick | awk 'NR==1{printf $1}' | cut -d : -f 1,3) }
 alias today="\`(date +"%d%m%Y")\`"
 
-alias gri="git rebase -i"
+alias gri="git rebase -i --autosquash"
 alias gfix="git commit --fixup"
 alias gpub="git pub"
 
