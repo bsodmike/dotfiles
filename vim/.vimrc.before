@@ -3,6 +3,41 @@ filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
 filetype plugin indent on
 
+augroup vimrcEx
+  autocmd!
+
+  " Auto remove whitespace on buffer save
+  autocmd BufWrite * mark ' | silent! %s/\s\+$// | norm ''
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
+
+  " Enable spellchecking for Markdown
+  autocmd FileType markdown setlocal spell
+
+  " Automatically wrap at 80 characters for Markdown
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+
+  " Automatically wrap at 72 characters and spell check git commit messages
+  autocmd FileType gitcommit setlocal textwidth=72
+  autocmd FileType gitcommit setlocal spell
+
+  " Recognise ES6 file extension as JavaScript
+  autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+
+  " Allow stylesheets to autocomplete hyphenated words
+  autocmd FileType css,scss,sass setlocal iskeyword+=-
+augroup END
+
 " Basic Settings ----------------------- {{{
 set autoindent
 set nocompatible
@@ -94,9 +129,6 @@ vnoremap <F1> <ESC>
 
 au FocusLost * silent! :wa
 
-" Auto remove whitespace on buffer save
-autocmd! BufWrite * mark ' | silent! %s/\s\+$// | norm ''
-
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
@@ -123,6 +155,7 @@ nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 
 inoremap jj <ESC>
 
+" Quicker window movement
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -131,6 +164,9 @@ nnoremap <C-l> <C-w>l
 
 " ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
+
+" Index ctags from any project, including those outside Rails
+map <Leader>ct :!ctags -R .<CR>
 
 " NERDTree configuration
 let NERDChristmasTree=1
@@ -143,5 +179,17 @@ let g:indent_guides_enable_on_vim_startup = 1
 set splitbelow
 set splitright
 
-" Recognise ES6 file extension as JavaScript
-autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+" Configure syntastic syntax checking to check on open as well as save
+let g:syntastic_check_on_open=1
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {"regex": "possibly useless use of a variable in void context"}
+
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
