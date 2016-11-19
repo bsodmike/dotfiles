@@ -32,12 +32,12 @@ export EDITOR=mvim
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler brew gem)
+plugins=(git bundler brew gem zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/share/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/share/npm/bin:/usr/local/bin:/usr/local/packer:/usr/bin:/bin:/usr/sbin:/sbin
 
 # User specific environment and startup programs
 function crc32 { cksum -o3 "$@"|ruby -e 'STDIN.each{|a|a=a.split;printf "%08X\t%s\n",a[0],a[2..-1].join(" ")}'; }
@@ -71,5 +71,3 @@ kick() { ssh vhost$1 -l root -t 'killall -USR1 chef-client && tail -f -n1000 /va
 # SSH Keys
 
 #}}}
-
-
