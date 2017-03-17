@@ -64,6 +64,9 @@ alias gri="git rebase -i --autosquash"
 alias gfix="git commit --fixup"
 alias gpub="git pub"
 
+alias pi0="ssh mdesilva@pi0"
+alias skylake-server="ssh \`dig @10.0.0.1 skylake-server.intranet +short\`"
+
 # WS
 server() { ag $1 /Volumes/inertialbox/clients/whitespace/whitespace-chef-repo/nodes/* | sed 's/.*\/\(vhost[^.]*\).*app-\([^]]*\)]"[,]*/\2:\1/' }
 kick() { ssh vhost$1 -l root -t 'killall -USR1 chef-client && tail -f -n1000 /var/log/chef/client.log' }
@@ -71,3 +74,7 @@ kick() { ssh vhost$1 -l root -t 'killall -USR1 chef-client && tail -f -n1000 /va
 # SSH Keys
 
 #}}}
+
+# Node Version Manager
+export NVM_DIR="/Users/mdesilva/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
