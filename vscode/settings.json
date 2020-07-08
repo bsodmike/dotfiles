@@ -1,0 +1,22 @@
+{
+  "editor.fontSize": 16,
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+  "editor.rulers": [ 80 ],
+  "workbench.startupEditor": "newUntitledFile",
+  "window.zoomLevel": 1,
+  "ruby.lint": {
+      "rubocop": true
+  },
+  "[ruby]": {
+      "editor.formatOnSave": true
+  },
+  "[rust]": {
+      "editor.formatOnSave": true
+  },
+  "ruby.format": "rubocop",
+  "workbench.colorTheme": "Monokai++",
+  "eslint.enable": false,
+}
