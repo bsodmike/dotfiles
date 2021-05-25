@@ -77,16 +77,30 @@ done
 
 echo ""
 
+# GPG
+export GPG_TTY=$(tty)
+
 # Node Version Manager
 export NVM_DIR="/Users/mdesilva/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 
 # Python
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 alias python=/usr/local/opt/python@3.8/bin/python3
 alias pip=/usr/local/opt/python@3.8/bin/pip3
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+source $HOME/.cargo/env
+
+# Redis
+export PATH="/usr/local/Cellar/redis/5.0.9/bin:$PATH"
+
+# chromedriver
+export PATH="$HOME/WebDriver/bin:$PATH"
 
 # Shell Conveniences
 alias rbenv_upgrade="brew update && brew upgrade rbenv ruby-build"
@@ -101,6 +115,7 @@ alias gri="git rebase -i -S --autosquash"
 alias grc="git rebase --continue"
 alias gfix="git commit --fixup"
 alias gpub="git pub"
+alias gfm="git checkout master && git fetch origin && git pull"
 #alias gitstats="f() { git log --author=$1 --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\n\", add, subs, loc }' - }; f"
 
 alias mbp-mike-ip="dig @10.0.0.1 mbp-mike +short"
