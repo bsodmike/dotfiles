@@ -68,8 +68,12 @@ echo "\n$greet\n"
 
 echo ""
 
-keys="id_rsa_m6as@securecloudsolutions.io_pk00_18032018"
-for i in "$keys"
+keys=(
+  "id_rsa_m6as@securecloudsolutions.io_pk00_18032018"
+  "id_ed25519_mike.cto@securecloudsolutions.io_07JUN2021"
+  "id_rsa_primary_23072016"
+)
+for i in "${keys[@]}"
 do
   echo "### Loading SSH key: $i"
   eval "$(ssh-add $HOME/.ssh/$i)"
