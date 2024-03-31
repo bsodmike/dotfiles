@@ -1,7 +1,14 @@
 ulimit -u 10000
+ulimit -n 2048
+
 set -x PATH $PATH $HOME/.cargo/bin
 set -x PATH $PATH /usr/local/bin/
 set -x PATH $PATH /opt/homebrew/bin/
+
+#set -x LIBCLANG_PATH $HOME/.espressif/tools/xtensa-esp32-elf-clang/esp-14.0.0-20220415-aarch64-apple-darwin/lib/
+#fish_add_path $HOME/.espressif/tools/xtensa-esp32-elf-gcc/8_4_0-esp-2021r2-patch3-aarch64-apple-darwin/bin/
+#fish_add_path $HOME/.espressif/tools/xtensa-esp32s2-elf-gcc/8_4_0-esp-2021r2-patch3-aarch64-apple-darwin/bin/
+#fish_add_path $HOME/.espressif/tools/xtensa-esp32s3-elf-gcc/8_4_0-esp-2021r2-patch3-aarch64-apple-darwin/bin/
 
 abbr -a vim 'nvim'
 abbr -a gri 'git rebase -i --autosquash'
