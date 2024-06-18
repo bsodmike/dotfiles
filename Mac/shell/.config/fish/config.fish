@@ -1,6 +1,8 @@
 ulimit -u 10000
 ulimit -n 2048
 
+set -x EDITOR /opt/homebrew/bin/nvim
+
 set -x PATH $PATH $HOME/.cargo/bin
 set -x PATH $PATH /usr/local/bin/
 set -x PATH $PATH /opt/homebrew/bin/
@@ -10,13 +12,20 @@ set -x PATH $PATH /opt/homebrew/bin/
 #fish_add_path $HOME/.espressif/tools/xtensa-esp32s2-elf-gcc/8_4_0-esp-2021r2-patch3-aarch64-apple-darwin/bin/
 #fish_add_path $HOME/.espressif/tools/xtensa-esp32s3-elf-gcc/8_4_0-esp-2021r2-patch3-aarch64-apple-darwin/bin/
 
+set -x PORTENTA_X8_IP dig +short portenta-x8-01.intranet
+set -x PFSENSE_IP dig +short pfsense.intranet
+
+abbr -a lt 'tree . -L 2'
 abbr -a vim 'nvim'
 abbr -a gri 'git rebase -i --autosquash'
 abbr -a gfix 'git commit --fixup'
 abbr -a gundo 'git reset HEAD~'
 abbr -a gnow 'git commit --amend --date=now --no-edit'
 abbr -a tmux-clean 'tmux ls | awk \'BEGIN{FS=":"}!/attached/{print $1}\' | xargs -n 1 tmux kill-ses -t'
+abbr -a pfsense.intranet 'ssh ({$PFSENSE_IP})'
+abbr -a portenta-x8-01.intranet 'ssh mike2@({$PORTENTA_X8_IP})'
 
+# Other aliases
 abbr -a yr 'cal -y'
 abbr -a c cargo
 abbr -a e nvim
@@ -151,3 +160,9 @@ eval (/opt/homebrew/bin/brew shellenv)
 ~/load_ssh_keys.sh
 
 status --is-interactive; and rbenv init - fish | source
+status --is-interactive; and atuin init fish | source
+
+if status is-interactive
+    eval (zellij setup --generate-completion fish | string collect)
+end
+
