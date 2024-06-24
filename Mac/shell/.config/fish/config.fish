@@ -24,7 +24,7 @@ abbr -a gnow 'git commit --amend --date=now --no-edit'
 abbr -a tmux-clean 'tmux ls | awk \'BEGIN{FS=":"}!/attached/{print $1}\' | xargs -n 1 tmux kill-ses -t'
 abbr -a pfsense.intranet 'ssh ({$PFSENSE_IP})'
 abbr -a portenta-x8-01.intranet 'ssh mike@({$PORTENTA_X8_IP})'
-abbr -a my_ip  'ifconfig | grep -C 5 en0 | grep \'inet 10.1\' | awk \'{print $6}\''
+abbr -a macbookpro_ip_en0  'ifconfig | grep -C 5 en0 | grep \'inet 10.1\' | awk \'{print $6}\''
 
 # Other aliases
 abbr -a yr 'cal -y'
