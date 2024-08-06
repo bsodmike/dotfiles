@@ -2,18 +2,6 @@
 
 set -e
 
-SOURCE=/Users/mdesilva/fetch
-BASE=/Users/mdesilva/dotfiles/crontab
-DEVICE="macbook_pro_m1_max"
-REMOTE="mdesilva@freenas-primary.intranet:/mnt/big-primary/cloud-backup/rsync_uploads"
-TIMESTAMP="%d%m%Y_%H%M%S_%Z"
-LOG_DIR="${BASE}/logs"
-OUTPUT_LOG="${LOG_DIR}/rsync_${DEVICE}_output_`date +${TIMESTAMP}`.log"
-RSYNC_LOG="${LOG_DIR}/rsync_${DEVICE}_`date +${TIMESTAMP}`.log"
-
-HOST_NAME="M1MaxMacBookPro.intranet"
-PROJECT="cloud-backups-rsync_uploads"
-
 yell() { echo "$0: $*" >&2; }
 die() { yell "$*"; exit 111; }
 try() { "$@" || die "cannot $*"; }
@@ -27,9 +15,8 @@ try() { "$@" || die "cannot $*"; }
 # do_log "DEBUG some debug message"
 # do_log "WARNING some warning message"
 # depts:
-#  - PRODUCT_DIR - the root dir of the sfw project
-#  - PRODUCT - the name of the software project dir
-#  - host_name - the short hostname of the host / container running on
+#  - PROJECT - the root dir of the sfw project
+#  - HOST_NAME - the short hostname of the host / container running on
 #------------------------------------------------------------------------------
 
 do_log(){
@@ -60,7 +47,7 @@ do_log(){
   type_of_msg=$(echo $*|cut -d" " -f1)
   msg="$(echo $*|cut -d" " -f2-)"
   log_dir="${LOG_DIR:-}" ; mkdir -p $log_dir
-  log_file="$log_dir/${PROJECT:-}."$(date "+%d%m%Y")'.log'
+  log_file="$log_dir/${PROJECT:-}_$NOW.log"
   msg=" [$type_of_msg] `date "+%d-%b-%Y %H:%M:%S %Z"` [${PROJECT:-}][@${HOST_NAME:-}] [$$] $msg "
   case "$type_of_msg" in
     'FATAL') print_fail "$msg" | tee -a $log_file ;;
@@ -70,8 +57,16 @@ do_log(){
     'OK') print_ok "$msg" | tee -a $log_file ;;
     *) echo "$msg" | tee -a $log_file ;;
   esac
-
 }
+
+NOW="$(date +"%d%m%Y_%H:%M:%S%z")"
+HOST_NAME=`hostname`
+PROJECT="cloud-backups-rsync_uploads"
+
+SOURCE=/Users/mdesilva/fetch
+REMOTE="mdesilva@freenas-primary.intranet:/mnt/big-primary/cloud-backup/rsync_uploads"
+LOG_DIR="`pwd`/logs"
+RSYNC_LOG="${LOG_DIR}/rsync_${HOST_NAME}_$NOW.log"
 
 do_log "INFO Backup script running..."
 do_log "INFO Rsync log: ${RSYNC_LOG}"
