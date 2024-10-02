@@ -7,6 +7,8 @@ set -x PATH $PATH $HOME/.cargo/bin
 set -x PATH $PATH /usr/local/bin/
 set -x PATH $PATH /opt/homebrew/bin/
 
+set -x CODE $HOME/fetch/code2019_mbp/
+
 #set -x LIBCLANG_PATH $HOME/.espressif/tools/xtensa-esp32-elf-clang/esp-14.0.0-20220415-aarch64-apple-darwin/lib/
 #fish_add_path $HOME/.espressif/tools/xtensa-esp32-elf-gcc/8_4_0-esp-2021r2-patch3-aarch64-apple-darwin/bin/
 #fish_add_path $HOME/.espressif/tools/xtensa-esp32s2-elf-gcc/8_4_0-esp-2021r2-patch3-aarch64-apple-darwin/bin/
@@ -21,6 +23,7 @@ abbr -a gri 'git rebase -i --autosquash'
 abbr -a gfix 'git commit --fixup'
 abbr -a gundo 'git reset HEAD~'
 abbr -a gnow 'git commit --amend --date=now --no-edit'
+abbr -a githead-sha 'git log -1 --format=%H'
 abbr -a tmux-clean 'tmux ls | awk \'BEGIN{FS=":"}!/attached/{print $1}\' | xargs -n 1 tmux kill-ses -t'
 abbr -a pfsense.intranet 'ssh ({$PFSENSE_IP})'
 abbr -a portenta-x8-01.intranet 'ssh mike@({$PORTENTA_X8_IP})'
@@ -158,10 +161,15 @@ end
 
 
 eval (/opt/homebrew/bin/brew shellenv)
+eval (ssh-agent -c)
 ~/load_ssh_keys.sh
 
 status --is-interactive; and rbenv init - fish | source
 status --is-interactive; and atuin init fish | source
+
+gpgconf --launch gpg-agent
+set gpg_socket (gpgconf --list-dirs agent-ssh-socket)
+set -x SSH_AUTH_SOCK $gpg_socket
 
 if status is-interactive
     eval (zellij setup --generate-completion fish | string collect)
