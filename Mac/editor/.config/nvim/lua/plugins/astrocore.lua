@@ -1,6 +1,8 @@
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 
+vim.lsp.inlay_hint.enable(true)
+
 ---@type LazySpec
 return {
 	"AstroNvim/astrocore",
@@ -68,7 +70,6 @@ return {
 		},
 		mappings = {
 			n = {
-				["<Leader>s"] = { "<esc>:w!<cr>", desc = "Save file" },
 				["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
 				L = {
 					function()
@@ -132,10 +133,7 @@ return {
 				--]]
 			},
 			i = {
-				--[[
 				["<C-s>"] = { "<esc>:w!<cr>", desc = "Save file" },
-				--]]
-				["<Leader>s"] = { "<esc>:w!<cr>", desc = "Save file" },
 				["<C-q>"] = { "<esc>:qa!<cr>", desc = "Exit" },
 			},
 			v = {
