@@ -8,9 +8,9 @@ return {
 	opts = {
 		-- Configuration table of features provided by AstroLSP
 		features = {
-			autoformat = true, -- enable or disable auto formatting on start
-			codelens = true, -- enable/disable codelens refresh on start
-			inlay_hints = false, -- enable/disable inlay hints on start
+			autoformat = true,   -- enable or disable auto formatting on start
+			codelens = true,     -- enable/disable codelens refresh on start
+			inlay_hints = true,  -- enable/disable inlay hints on start
 			semantic_tokens = true, -- enable/disable semantic token highlighting
 		},
 		-- customize lsp formatting options
@@ -87,6 +87,19 @@ return {
 					desc = "Declaration of current symbol",
 					cond = "textDocument/declaration",
 				},
+				gd = {
+					function()
+						vim.lsp.buf.definition()
+					end,
+					desc = "Definition of current symbol",
+					cond = "textDocument/definition",
+				},
+				gr = {
+					function()
+						vim.lsp.buf.references()
+					end,
+					desc = "References of current symbol",
+				},
 				["<Leader>uY"] = {
 					function()
 						require("astrolsp.toggles").buffer_semantic_tokens()
@@ -94,7 +107,14 @@ return {
 					desc = "Toggle LSP semantic highlight (buffer)",
 					cond = function(client)
 						return client.supports_method("textDocument/semanticTokens/full")
-							and vim.lsp.semantic_tokens ~= nil
+								and vim.lsp.semantic_tokens ~= nil
+					end,
+				},
+				-- from jonhoo's config
+				-- https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.lua#L459
+				["<Leader>a"] = {
+					function()
+						vim.lsp.buf.code_action({})
 					end,
 				},
 			},
@@ -104,6 +124,9 @@ return {
 		on_attach = function(client, bufnr)
 			-- this would disable semanticTokensProvider for all clients
 			-- client.server_capabilities.semanticTokensProvider = nil
+
+			-- enable inlay hints
+			vim.lsp.inlay_hint.enable(true)
 		end,
 	},
 }

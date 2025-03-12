@@ -54,10 +54,10 @@ return {
 	{
 		"sphamba/smear-cursor.nvim",
 		opts = {
-			stiffness = 0.8, -- 0.6      [0, 1]
-			trailing_stiffness = 0.5, -- 0.3      [0, 1]
+			stiffness = 0.8,            -- 0.6      [0, 1]
+			trailing_stiffness = 0.5,   -- 0.3      [0, 1]
 			distance_stop_animating = 0.5, -- 0.1      > 0
-			hide_target_hack = false, -- true     boolean
+			hide_target_hack = false,   -- true     boolean
 		},
 	},
 	{
@@ -109,7 +109,7 @@ return {
 			})
 		end,
 	},
-	{ "m-pilia/vim-pkgbuild", lazy = false },
+	{ "m-pilia/vim-pkgbuild",         lazy = false },
 	{ "iamcco/markdown-preview.nvim", lazy = false },
 	{
 		"akinsho/git-conflict.nvim",
@@ -120,13 +120,13 @@ return {
 		end,
 		lazy = false,
 	},
-	{ "folke/zen-mode.nvim", lazy = false },
-	{ "mbbill/undotree", lazy = false },
-	{ "tpope/vim-fugitive", lazy = false },
+	{ "folke/zen-mode.nvim",             lazy = false },
+	{ "mbbill/undotree",                 lazy = false },
+	{ "tpope/vim-fugitive",              lazy = false },
 	{ "Eandrju/cellular-automaton.nvim", lazy = false },
-	{ "segeljakt/vim-silicon", lazy = false },
-	{ "TheBlob42/houdini.nvim", lazy = false },
-	{ "mzlogin/vim-markdown-toc", lazy = false },
+	{ "segeljakt/vim-silicon",           lazy = false },
+	{ "TheBlob42/houdini.nvim",          lazy = false },
+	{ "mzlogin/vim-markdown-toc",        lazy = false },
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "BufRead",
